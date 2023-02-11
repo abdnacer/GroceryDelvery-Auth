@@ -4,7 +4,7 @@ import UserModel from './models/User'
 
 const app = express()
 
-app.get('/', async (req, res) => {
+app.get('/Add', async (req, res) => {
   const user = await UserModel.find().exec()
   res.status(200).json(user)
 })
