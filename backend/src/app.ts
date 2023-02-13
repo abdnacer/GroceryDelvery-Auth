@@ -1,7 +1,8 @@
 import 'dotenv/config'
-import express, { NextFunction, Request, Response } from 'express'
+import express from 'express'
 import userRouter from './routes/userRouter'
 import morgan from 'morgan'
+import CreateHttpError from 'http-errors'
 
 const app = express()
 
@@ -11,12 +12,8 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/api/auth', userRouter)
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
-  console.error(err)
-  let errorMessage = "An unknow error occurred"
-  if (err instanceof Error) errorMessage = err.message
-  res.status(500).json({ error: errorMessage })
+app.use((req, res, next) => {
+  next(CreateHttpError(404, "Endpoint not found"))
 })
 
 export default app

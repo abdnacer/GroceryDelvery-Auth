@@ -1,11 +1,12 @@
 import express from "express"
-import { getUser, getUsers, registerUser } from "../controllers/UserController"
+import { loginUser, registerUser } from "../controllers/authController"
+import errorMiddleware from "../middleware/error.middlewre"
 
 const router = express.Router()
 
-router.post('/ ', getUsers)
-router.post('/login', getUsers)
-router.post('/signup', registerUser)
-router.get('/:idUser', getUser)
+router.post('/login', loginUser)
+router.post('/register', registerUser)
+
+router.use(errorMiddleware)
 
 export default router

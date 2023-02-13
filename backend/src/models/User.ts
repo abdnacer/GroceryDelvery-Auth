@@ -20,6 +20,10 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  verification: {
+    type: Boolean,
+    require: true
   }
 },
   {

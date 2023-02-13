@@ -3,5 +3,6 @@ import { port, str } from "envalid/dist/validators"
 
 export default cleanEnv(process.env, {
   MONGO_URL: str(),
-  PORT: port()
+  PORT: port(),
+  NODE_ENV: str()
 })
